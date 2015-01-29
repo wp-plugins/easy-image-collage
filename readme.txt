@@ -41,6 +41,9 @@ Check out some [examples on our demo website](http://demo.bootstrapped.ventures/
 
 == Changelog ==
 
+= 1.2 =
+* Fix: Compatibility issue with Firefox
+
 = 1.1 =
 * Improvement: Ability to change class and rel for lightbox links
 * Fix: Problem in backend for RTL languages
@@ -49,6 +52,9 @@ Check out some [examples on our demo website](http://demo.bootstrapped.ventures/
 * The very first version of the Easy Image Collage plugin
 
 == Upgrade notice ==
+
+= 1.2 =
+Update to ensure everything works like it should for Firefox users
 
 = 1.1 =
 Make sure to update if you're using a RTL language

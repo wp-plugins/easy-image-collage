@@ -62,8 +62,7 @@ class EIC_Shortcode {
                         $output .= '.eic-frame-' . $grid_data['id'] . ' .eic-image-' . $id . ' {';
                         $output .= 'background-image: url("' . $url . '");';
                         $output .= 'background-size: ' . $width . 'px ' . $height . 'px;';
-                        $output .= 'background-position-x: ' . $image['pos_x'] . 'px;';
-                        $output .= 'background-position-y: ' . $image['pos_y'] . 'px;';
+                        $output .= 'background-position: ' . $image['pos_x'] . 'px ' . $image['pos_y'] . 'px;';
                         $output .= '}';
                     }
                 }

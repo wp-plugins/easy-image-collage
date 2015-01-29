@@ -244,8 +244,7 @@ EasyImageCollage.setImageFrontend = function(image) {
     image_element
         .css('background-image', 'url("'+image.attachment_url+'")')
         .css('background-size', '' + image.size_x + 'px ' + image.size_y + 'px')
-        .css('background-position-x', '' + image.pos_x + 'px')
-        .css('background-position-y', '' + image.pos_y + 'px')
+        .css('background-position', '' + image.pos_x + 'px ' + image.pos_y + 'px')
     ;
 
     // Handle move
@@ -272,8 +271,11 @@ EasyImageCollage.handleImageMove = function(image) {
             size_y = size[2],
             min_x = image_element.innerWidth() - size_x,
             min_y = image_element.innerHeight() - size_y,
-            pos_x = parseInt(image_element.css('background-position-x')),
-            pos_y = parseInt(image_element.css('background-position-y'));
+            backgroundPos = image_element.css('background-position').split(" "),
+            pos_x = parseInt(backgroundPos[0]),
+            pos_y = parseInt(backgroundPos[1]);
+
+            console.log(pos_x);
 
         jQuery(window).on('mousemove touchmove', function(e) {
             e.preventDefault();
@@ -298,14 +300,15 @@ EasyImageCollage.handleImageMove = function(image) {
             y0 = y;
 
             image_element
-                .css('background-position-x', '' + pos_x + 'px')
-                .css('background-position-y', '' + pos_y + 'px')
+                .css('background-position', '' + pos_x + 'px ' + pos_y + 'px')
         });
 
         jQuery(window).on('mouseup touchend mouseleave', function() {
             // Update new image position
-            var pos_x = parseInt(image_element.css('background-position-x')),
-                pos_y = parseInt(image_element.css('background-position-y'));
+
+            var backgroundPos = image_element.css('background-position').split(" "),
+                pos_x = parseInt(backgroundPos[0]),
+                pos_y = parseInt(backgroundPos[1]);
 
             image.pos_x = pos_x;
             image.pos_y = pos_y;

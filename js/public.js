@@ -57,8 +57,7 @@ var EIC_Responsive = {
                 // Change image styling
                 image
                     .css('background-size', '' + size_x + 'px ' + size_y + 'px')
-                    .css('background-position-x', '' + pos_x + 'px')
-                    .css('background-position-y', '' + pos_y + 'px')
+                    .css('background-position', '' + pos_x + 'px ' + pos_y + 'px')
                     .css('border-width', border + 'px');
             });
         }
