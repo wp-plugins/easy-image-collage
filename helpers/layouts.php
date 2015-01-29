@@ -64,7 +64,10 @@ class EIC_Layouts {
 
                     if( EasyImageCollage::option( 'clickable_images', '0' ) == '1' ) {
                         $image_post = get_post($image['attachment_id']);
-                        $output .= '<a href="' . $image['attachment_url'] . '" rel="lightbox" title="' . esc_attr( $image_post->post_title ) . '" class="eic-image-link"></a>';
+                        $class = EasyImageCollage::option( 'lightbox_class', '' );
+                        $rel = EasyImageCollage::option( 'lightbox_rel', 'lightbox' );
+
+                        $output .= '<a href="' . $image['attachment_url'] . '" rel="' . esc_attr( $rel ) . '" title="' . esc_attr( $image_post->post_title ) . '" class="eic-image-link ' . esc_attr( $class ) . '"></a>';
                     }
 
                 } else {

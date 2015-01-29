@@ -6,7 +6,6 @@ class EIC_Shortcode_Button {
 
     public function __construct()
     {
-        add_thickbox();
         add_action( 'media_buttons_context',  array( $this, 'add_shortcode_button' ) );
         add_action( 'admin_footer',  array( $this, 'add_modal_content' ) );
     }

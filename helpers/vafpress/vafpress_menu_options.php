@@ -7,21 +7,6 @@ $admin_menu = array(
     'title' => 'Easy Image Collage ' . __('Settings', 'easy-image-collage'),
     'logo'  => EasyImageCollage::get()->coreUrl . '/img/logo.png',
     'menus' => array(
-//=-=-=-=-=-=-= GENERAL =-=-=-=-=-=-=
-        array(
-            'title' => __('General', 'easy-image-collage'),
-            'name' => 'general',
-            'icon' => 'font-awesome:fa-cogs',
-            'controls' => array(
-                array(
-                    'type' => 'toggle',
-                    'name' => 'clickable_images',
-                    'label' => __('Clickable Images', 'easy-image-collage'),
-                    'description' => __( 'Best used in combination with a lightbox plugin.', 'easy-image-collage' ),
-                    'default' => '0',
-                ),
-            ),
-        ),
 //=-=-=-=-=-=-= DEFAULT STYLE =-=-=-=-=-=-=
         array(
             'title' => __('Default Style', 'easy-image-collage'),
@@ -43,6 +28,49 @@ $admin_menu = array(
                     'label' => __('Border Color', 'easy-image-collage'),
                     'default' => '#444444',
                     'format' => 'hex',
+                ),
+            ),
+        ),
+//=-=-=-=-=-=-= LIGHTBOX =-=-=-=-=-=-=
+        array(
+            'title' => __('Lightbox', 'easy-image-collage'),
+            'name' => 'lightbox',
+            'icon' => 'font-awesome:fa-camera',
+            'controls' => array(
+                array(
+                    'type' => 'section',
+                    'title' => __('General', 'easy-image-collage'),
+                    'name' => 'lightbox_general',
+                    'fields' => array(
+                        array(
+                            'type' => 'toggle',
+                            'name' => 'clickable_images',
+                            'label' => __('Clickable Images', 'easy-image-collage'),
+                            'description' => __( 'Best used in combination with a lightbox plugin.', 'easy-image-collage' ),
+                            'default' => '0',
+                        ),
+                    ),
+                ),
+                array(
+                    'type' => 'section',
+                    'title' => __('Advanced', 'easy-image-collage'),
+                    'name' => 'lightbox_advanced',
+                    'fields' => array(
+                        array(
+                            'type' => 'textbox',
+                            'name' => 'lightbox_class',
+                            'label' => __('Link class', 'easy-image-collage'),
+                            'description' => __('Class to be added to the lightbox link.', 'easy-image-collage'),
+                            'default' => '',
+                        ),
+                        array(
+                            'type' => 'textbox',
+                            'name' => 'lightbox_rel',
+                            'label' => __('Link rel', 'easy-image-collage'),
+                            'description' => __('Rel value of the lightbox link.', 'easy-image-collage'),
+                            'default' => 'lightbox',
+                        ),
+                    ),
                 ),
             ),
         ),

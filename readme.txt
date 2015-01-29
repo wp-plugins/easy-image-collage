@@ -14,7 +14,7 @@ Create beautiful responsive image collages for all your posts and pages
 
 Easy Image Collage is a user friendly plugin for adding image collages to any of your posts and pages.
 
-Watch this video introduction to see it in action:
+Check out some [examples on our demo website](http://demo.bootstrapped.ventures/easy-image-collage/) or watch this video introduction to see it in action:
 
 [youtube https://www.youtube.com/watch?v=uUEs98iGG_I]
 
@@ -41,10 +41,17 @@ Watch this video introduction to see it in action:
 
 == Changelog ==
 
+= 1.1 =
+* Improvement: Ability to change class and rel for lightbox links
+* Fix: Problem in backend for RTL languages
+
 = 1.0 =
 * The very first version of the Easy Image Collage plugin
 
 == Upgrade notice ==
+
+= 1.1 =
+Make sure to update if you're using a RTL language
 
 = 1.0 =
 First version, no upgrades needed.
