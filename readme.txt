@@ -3,7 +3,7 @@ Contributors: BrechtVds
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QG7KZMGFU325Y
 Tags: collage, grid, gallery, image, photo
 Requires at least: 3.5
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -29,7 +29,7 @@ Check out some [examples on our demo website](http://demo.bootstrapped.ventures/
 
 = Who made this? =
 
-[Bootstrapped Ventures](http://www.bootstrapped.ventures)
+[Bootstrapped Ventures](http://bootstrapped.ventures)
 
 == Screenshots ==
 

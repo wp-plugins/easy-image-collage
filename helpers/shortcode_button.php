@@ -2,8 +2,6 @@
 
 class EIC_Shortcode_Button {
 
-    private $buttons_added = false;
-
     public function __construct()
     {
         add_action( 'media_buttons_context',  array( $this, 'add_shortcode_button' ) );
@@ -14,13 +12,10 @@ class EIC_Shortcode_Button {
     {
         $screen = get_current_screen();
 
-        if( $screen->base == 'post' && !$this->buttons_added ) {
+        if( $screen->base == 'post' ) {
             $title = __( 'Add Image Collage', 'easy-image-collage' );
 
             $context .= '<a href="#" id="eic-button" class="button" data-editor="content" title="' . $title . '">' . $title . '</a>';
-
-            // Prevent adding buttons to other TinyMCE instances on the same page
-            $this->buttons_added = true;
         }
 
         return $context;

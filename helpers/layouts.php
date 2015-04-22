@@ -87,8 +87,8 @@ class EIC_Layouts {
 
             return $output;
         } else {
-            $percentage1 = $block['pos'] * 100;
-            $percentage2 = 100 - $percentage1;
+            $percentage1 = str_replace( ',', '.', $block['pos'] * 100 );
+            $percentage2 = str_replace( ',', '.', 100 - $percentage1 );
 
             if( $block['type'] == 'row' ) {
                 $style1 = 'top: 0; left: 0; right: 0; bottom: ' . $percentage1 . '%; height: ' . $percentage1 . '%;';
