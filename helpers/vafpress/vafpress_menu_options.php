@@ -13,6 +13,47 @@ $admin_menu = array(
             'name' => 'default_style',
             'icon' => 'font-awesome:fa-picture-o',
             'controls' => array(
+	            array(
+		            'type' => 'select',
+		            'name' => 'default_style_grid_align',
+		            'label' => __('Grid Alignment', 'easy-image-collage'),
+		            'items' => array(
+			            array(
+				            'value' => 'left',
+				            'label' => __( 'Align', 'easy-image-collage' ) . ': ' . __( 'left', 'easy-image-collage' ),
+			            ),
+			            array(
+				            'value' => 'center',
+				            'label' => __( 'Align', 'easy-image-collage' ) . ': ' . __( 'center', 'easy-image-collage' ),
+			            ),
+			            array(
+				            'value' => 'right',
+				            'label' => __( 'Align', 'easy-image-collage' ) . ': ' . __( 'right', 'easy-image-collage' ),
+			            ),
+		            ),
+		            'default' => array(
+			            'center',
+		            ),
+		            'validation' => 'required',
+	            ),
+	            array(
+		            'type' => 'slider',
+		            'name' => 'default_style_grid_width',
+		            'label' => __('Grid Width', 'easy-image-collage'),
+		            'min' => '150',
+		            'max' => '1150',
+		            'step' => '1',
+		            'default' => '500',
+	            ),
+	            array(
+		            'type' => 'slider',
+		            'name' => 'default_style_grid_ratio',
+		            'label' => __('Grid Ratio', 'easy-image-collage'),
+		            'min' => '0.25',
+		            'max' => '4',
+		            'step' => '0.05',
+		            'default' => '1',
+	            ),
                 array(
                     'type' => 'slider',
                     'name' => 'default_style_border_width',

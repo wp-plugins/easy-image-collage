@@ -5,7 +5,7 @@ class EIC_Ajax {
     public function __construct()
     {
         add_action( 'wp_ajax_image_collage', array( $this, 'ajax_image_collage' ) );
-        add_action( 'wp_ajax_nopriv_image_collage', array( $this, 'ajax_image_collage' ) );
+        add_action( 'wp_ajax_image_collage_preview', array( $this, 'ajax_image_collage_preview' ) );
     }
 
     public function ajax_image_collage()
@@ -13,8 +13,8 @@ class EIC_Ajax {
         if( check_ajax_referer( 'eic_image_collage', 'security', false ) )
         {
 
-            $grid =  $_POST['grid'];
-            $grid_id = intval( $grid['id'] );
+            $grid_data =  $_POST['grid'];
+            $grid_id = intval( $grid_data['id'] );
 
             // Create new or update grid
             if( $grid_id === 0 ) {
@@ -24,7 +24,7 @@ class EIC_Ajax {
                     'post_status' => 'publish',
                     'post_date' => date('Y-m-d H:i:s'),
                     'post_author' => $user_ID,
-                    'post_type' => 'eic_grid',
+                    'post_type' => EIC_POST_TYPE,
                     'post_content' => '',
                 );
 
@@ -38,14 +38,52 @@ class EIC_Ajax {
                 wp_update_post( $post );
             }
 
-            $grid['id'] = $grid_id;
-            update_post_meta( $grid_id, 'eic_grid_data', $grid );
+	        $grid = new EIC_Grid( $grid_id);
+            $grid->update_data( $grid_data );
 
             echo json_encode($grid_id);
         }
 
         die();
     }
+
+	public function ajax_image_collage_preview()
+	{
+		$preview = '';
+
+		if( check_ajax_referer( 'eic_image_collage', 'security', false ) )
+		{
+			$grid_id = intval( $_POST['grid_id'] );
+
+			$post = get_post( $grid_id );
+
+			$preview .= '<span contentEditable="false" style="font-weight: bold;" data-eic-grid="' . $grid_id . '">Easy Image Collage ' . $grid_id . '</span>';
+			$preview .= '<span contentEditable="false" style="float: right; color: darkred;" data-eic-grid-remove="' . $grid_id . '">' . __( 'remove', 'easy-image-collage' ) . '</span>';
+			$preview .= '<br/><br/>';
+
+			if( !is_null( $post ) && $post->post_type == EIC_POST_TYPE ) {
+				$grid = new EIC_Grid( $grid_id );
+				$images = $grid->images();
+
+				if( !empty( $images ) ) {
+					foreach( $images as $id => $image ) {
+						if( $image ) {
+							$thumb = wp_get_attachment_image_src( $image['attachment_id'], array( 100, 100 ) );
+
+							if( $thumb ) {
+								$preview .= '<span contentEditable="false" style="display: inline-block; background-image: url(\'' . $thumb[0] . '\'); background-size: ' . $thumb[1] . 'px ' . $thumb[2] . 'px; width: ' . $thumb[1] . 'px; height: ' . $thumb[2] . 'px;" data-eic-grid="' . $grid_id . '">&nbsp;</span>';
+							}
+						}
+					}
+				} else {
+					$preview .= '<span contentEditable="false" data-eic-grid="' . $grid_id . '">' . __( 'No images in this collage yet', 'easy-image-collage' ) . '</span>';
+				}
+			}
+		}
+
+		echo $preview;
+		die();
+	}
 
     public function url()
     {

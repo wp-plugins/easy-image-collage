@@ -12,11 +12,24 @@ Create beautiful responsive image collages for all your posts and pages
 
 == Description ==
 
-Easy Image Collage is a user friendly plugin for adding image collages to any of your posts and pages.
+Use Easy Image Collage to easily add responsive image collages to your posts, pages or any custom post type.
 
-Check out some [examples on our demo website](http://demo.bootstrapped.ventures/easy-image-collage/) or watch this video introduction to see it in action:
+Go to our website for [documentation and video lessons on all our features](http://bootstrapped.ventures/easy-image-collage/).
 
-[youtube https://www.youtube.com/watch?v=uUEs98iGG_I]
+An overview of the Easy Image Collage features:
+
+*   Multiple **responsive layouts** for your collages
+*   Easily **change the size** of the layouts
+*   Intuitive **drag and drop** interface
+*   Add **multiple collages** to any post type
+
+We also have a [Easy Image Collage Premium version](http://bootstrapped.ventures/easy-image-collage/) which offers the following features:
+
+*   **Adjust borders** to get layouts however you want
+*   Use **image manipulation** to get them just right
+*   Apply **Instagram-like filters** to your images
+
+This plugin is under active development. Any feature requests are welcome!
 
 
 == Installation ==
@@ -41,6 +54,14 @@ Check out some [examples on our demo website](http://demo.bootstrapped.ventures/
 
 == Changelog ==
 
+= 1.3 =
+* Feature: Change grid width and ratio
+* Feature: Change grid alignment
+* Feature: Collage preview in Visual Editor
+* Improvement: Background pattern for empty image locations
+* Improvement: Easier to reposition images
+* Fix: Problem with editing newly added grid before saving the post
+
 = 1.2 =
 * Fix: Compatibility issue with Firefox
 
@@ -52,6 +73,9 @@ Check out some [examples on our demo website](http://demo.bootstrapped.ventures/
 * The very first version of the Easy Image Collage plugin
 
 == Upgrade notice ==
+
+= 1.3 =
+Major update, recommended for everyone!
 
 = 1.2 =
 Update to ensure everything works like it should for Firefox users

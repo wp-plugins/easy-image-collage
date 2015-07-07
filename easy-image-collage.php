@@ -8,8 +8,8 @@ Author: Bootstrapped Ventures
 Author URI: http://bootstrapped.ventures
 License: GPLv2
 */
-
-define( 'EIC_VERSION', '1.2' );
+define( 'EIC_VERSION', '1.3' );
+define( 'EIC_POST_TYPE', 'eic_grid' );
 
 class EasyImageCollage {
 
@@ -40,6 +40,33 @@ class EasyImageCollage {
         return self::$instantiated_by_premium;
     }
 
+	/**
+	 * Add loaded addon to array of loaded addons
+	 */
+	public static function loaded_addon( $addon, $instance )
+	{
+		if( !array_key_exists( $addon, self::$addons ) ) {
+			self::$addons[$addon] = $instance;
+		}
+	}
+
+	/**
+	 * Returns true if the specified addon has been loaded
+	 */
+	public static function is_addon_active( $addon )
+	{
+		return array_key_exists( $addon, self::$addons );
+	}
+
+	public static function addon( $addon )
+	{
+		if( isset( self::$addons[$addon] ) ) {
+			return self::$addons[$addon];
+		}
+
+		return false;
+	}
+
     /**
      * Access a VafPress option with optional default value
      */
@@ -51,6 +78,7 @@ class EasyImageCollage {
 
     public $pluginName = 'easy-image-collage';
     public $coreDir;
+	public $corePath;
     public $coreUrl;
     public $pluginFile;
 
@@ -69,9 +97,10 @@ class EasyImageCollage {
         update_option( $this->pluginName . '_version', EIC_VERSION );
 
         // Set core directory, URL and main plugin file
-        $this->coreDir = apply_filters( 'eic_core_dir', WP_PLUGIN_DIR . '/' . $this->pluginName );
-        $this->coreUrl = apply_filters( 'eic_core_url', plugins_url() . '/' . $this->pluginName );
-        $this->pluginFile = apply_filters( 'eic_plugin_file', __FILE__ );
+	    $this->corePath = str_replace( '/easy-image-collage.php', '', plugin_basename( __FILE__ ) );
+	    $this->coreDir = apply_filters( 'eic_core_dir', WP_PLUGIN_DIR . '/' . $this->corePath );
+	    $this->coreUrl = apply_filters( 'eic_core_url', plugins_url() . '/' . $this->corePath );
+	    $this->pluginFile = apply_filters( 'eic_plugin_file', __FILE__ );
 
         // Load textdomain
         if( !self::is_premium_active() ) {
@@ -90,6 +119,11 @@ class EasyImageCollage {
         $this->helper( 'post_type' );
         $this->helper( 'shortcode' );
         $this->helper( 'vafpress' );
+
+	    // Include required helpers but don't instantiate
+	    $this->include_helper( 'addons/addon' );
+	    $this->include_helper( 'addons/premium_addon' );
+	    $this->include_helper( 'models/grid' );
 
         // Load required helpers (admin only)
         if( is_admin() ) {
@@ -158,4 +192,7 @@ class EasyImageCollage {
      */
 }
 
-EasyImageCollage::get();
+// Premium version is responsible for instantiating if available
+if( !class_exists( 'EasyImageCollagePremium' ) ) {
+	EasyImageCollage::get();
+}

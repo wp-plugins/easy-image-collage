@@ -34,13 +34,8 @@ class EIC_Shortcode_Button {
             $grids = array();
 
             foreach( $grid_ids as $grid_id ) {
-                $grid = get_post_meta( $grid_id, 'eic_grid_data', true );
-
-                if( !isset( $grid['images'] ) ) {
-                    $grid['images'] = array();
-                }
-
-                $grids[$grid_id] = $grid;
+                $grid = new EIC_Grid( $grid_id );
+                $grids[$grid_id] = $grid->get_data();
             }
 
             wp_localize_script( 'eic_admin', 'eic_admin_grids', $grids );
@@ -49,8 +44,9 @@ class EIC_Shortcode_Button {
                 'layout' => 'square',
                 'images' => array(),
                 'properties' => array(
-                    'width' => 500,
-                    'ratio' => 1,
+                    'align' => EasyImageCollage::option( 'default_style_grid_align', 'center' ),
+                    'width' => intval( EasyImageCollage::option( 'default_style_grid_width', 500 ) ),
+                    'ratio' => floatval( EasyImageCollage::option( 'default_style_grid_ratio', 1 ) ),
                     'borderWidth' => intval( EasyImageCollage::option( 'default_style_border_width', 4 ) ),
                     'borderColor' => EasyImageCollage::option( 'default_style_border_color', '#444444' ),
                 ),

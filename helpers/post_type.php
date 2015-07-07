@@ -17,6 +17,6 @@ class EIC_Post_Type
             )
         );
 
-        register_post_type('eic_grid', $args);
+        register_post_type( EIC_POST_TYPE, $args );
     }
 }

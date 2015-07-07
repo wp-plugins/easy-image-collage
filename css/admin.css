@@ -1,13 +1,15 @@
 @charset "UTF-8";
 .eic-container {
-  clear: both; }
+  clear: both;
+  text-align: center; }
   .eic-container * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
   .eic-container .eic-frame {
-    margin: 0 auto;
-    position: relative; }
+    display: inline-block;
+    position: relative;
+    text-align: left; }
     .eic-container .eic-frame .eic-row,
     .eic-container .eic-frame .eic-col {
       position: absolute; }
@@ -58,20 +60,51 @@
 .eic-editing .eic-properties {
   margin: 10px auto;
   max-width: 500px; }
-  .eic-editing .eic-properties #border-width-slider {
+  .eic-editing .eic-properties .slider-value-container {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 2px; }
+  .eic-editing .eic-properties #grid-width-minus, .eic-editing .eic-properties #grid-width-plus {
+    vertical-align: top;
+    cursor: pointer;
+    font-size: 18px;
+    display: inline-block;
+    padding-top: 1px; }
+  .eic-editing .eic-properties #grid-width-plus {
+    font-size: 16px;
+    padding-top: 3px; }
+  .eic-editing .eic-properties #grid-width-slider {
+    display: inline-block;
+    width: 400px; }
+  .eic-editing .eic-properties #grid-ratio-slider, .eic-editing .eic-properties #border-width-slider {
     display: inline-block;
     width: 200px; }
+  .eic-editing .eic-properties #grid-align {
+    margin-left: 25px;
+    width: 220px; }
   .eic-editing .eic-properties .wp-picker-container {
     line-height: 27px;
     margin-left: 10px; }
+  .eic-editing .eic-properties .wp-picker-input-wrap {
+    position: absolute; }
   .eic-editing .eic-properties .wp-picker-holder {
     z-index: 10;
     position: absolute; }
 .eic-editing .eic-frame {
   width: 500px;
   height: 500px; }
+  .eic-editing .eic-frame .eic-image:not(.has-image) {
+    background: url(../img/no-image.png) repeat !important; }
+    .eic-editing .eic-frame .eic-image:not(.has-image) .eic-image-control-manipulate {
+      display: none; }
   .eic-editing .eic-frame .eic-image.has-image {
     cursor: move; }
+  .eic-editing .eic-frame .eic-divider {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    background-color: #333;
+    border: 1px solid white; }
   .eic-editing .eic-frame .eic-image-controls {
     display: none; }
     .eic-editing .eic-frame .eic-image-controls .eic-image-control {
@@ -87,7 +120,113 @@
       .eic-editing .eic-frame .eic-image-controls .eic-image-control:hover {
         background-color: #2980b9;
         cursor: pointer; }
+.eic-editing .eic-premium-only {
+  display: none; }
 
+.eic-property-header {
+  display: block;
+  font-weight: bold;
+  font-size: 14px; }
+
+.eic-manipulating .manipulating-image-preview {
+  text-align: center; }
+.eic-manipulating .eic-manipulating-filters-placeholder, .eic-manipulating .eic-manipulating-properties-placeholder {
+  display: none; }
+.eic-manipulating table {
+  width: 90%;
+  margin: 40px auto; }
+  .eic-manipulating table td {
+    vertical-align: top; }
+  .eic-manipulating table .eic-manipulating-filters {
+    padding-bottom: 15px; }
+    .eic-manipulating table .eic-manipulating-filters .eic-manipulating-filter {
+      display: inline-block;
+      border: 1px solid #0073aa;
+      color: #0073aa;
+      padding: 3px 8px;
+      margin: 5px 5px 0 0; }
+      .eic-manipulating table .eic-manipulating-filters .eic-manipulating-filter.active {
+        background-color: #0073aa;
+        color: white; }
+      .eic-manipulating table .eic-manipulating-filters .eic-manipulating-filter:hover {
+        cursor: pointer;
+        color: black; }
+  .eic-manipulating table .eic-manipulating-image {
+    text-align: center; }
+    .eic-manipulating table .eic-manipulating-image img, .eic-manipulating table .eic-manipulating-image canvas {
+      max-width: 100% !important;
+      height: auto !important; }
+  .eic-manipulating table .eic-manipulating-properties {
+    width: 310px;
+    padding-left: 40px; }
+    .eic-manipulating table .eic-manipulating-properties .eic-property-label {
+      font-size: 12px;
+      line-height: 12px;
+      margin-top: 2px;
+      display: block; }
+    .eic-manipulating table .eic-manipulating-properties .slider, .eic-manipulating table .eic-manipulating-properties .eic-slider {
+      display: inline-block;
+      width: 260px; }
+    .eic-manipulating table .eic-manipulating-properties .eic-slider-value {
+      display: inline-block;
+      vertical-align: top; }
+
+.eic-premium-only {
+  margin: 10px auto;
+  max-width: 500px;
+  text-align: center;
+  padding: 5px;
+  border: 1px dashed darkred;
+  color: darkred; }
+  .eic-premium-only a {
+    font-weight: bold;
+    color: darkred; }
+
+.eic-spinner {
+  display: none;
+  margin: 0 auto;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  font-size: 10px; }
+
+.eic-spinner > div {
+  background-color: #333;
+  height: 100%;
+  margin: 0 1px;
+  width: 3px;
+  display: inline-block;
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out; }
+
+.eic-spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s; }
+
+.eic-spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s; }
+
+.eic-spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s; }
+
+.eic-spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s; }
+
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4); }
+  20% {
+    -webkit-transform: scaleY(1); } }
+@keyframes stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4); }
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1); } }
 /**
  * Featherlight – ultra slim jQuery lightbox
  * Version 1.0.3 - http://noelboss.github.io/featherlight/

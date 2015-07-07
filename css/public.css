@@ -1,12 +1,14 @@
 .eic-container {
-  clear: both; }
+  clear: both;
+  text-align: center; }
   .eic-container * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
   .eic-container .eic-frame {
-    margin: 0 auto;
-    position: relative; }
+    display: inline-block;
+    position: relative;
+    text-align: left; }
     .eic-container .eic-frame .eic-row,
     .eic-container .eic-frame .eic-col {
       position: absolute; }

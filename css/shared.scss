@@ -6,10 +6,12 @@
     }
 
     clear: both;
+    text-align: center;
 
     .eic-frame {
-        margin: 0 auto;
+        display: inline-block;
         position: relative;
+        text-align: left;
 
         .eic-row,
         .eic-col {
