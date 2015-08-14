@@ -3,7 +3,7 @@ Contributors: BrechtVds
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QG7KZMGFU325Y
 Tags: collage, grid, gallery, image, photo
 Requires at least: 3.5
-Tested up to: 4.2
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -25,6 +25,7 @@ An overview of the Easy Image Collage features:
 
 We also have a [Easy Image Collage Premium version](http://bootstrapped.ventures/easy-image-collage/) which offers the following features:
 
+*   Unlimited possibilities by **creating your own layout**
 *   **Adjust borders** to get layouts however you want
 *   Use **image manipulation** to get them just right
 *   Apply **Instagram-like filters** to your images
@@ -54,6 +55,11 @@ This plugin is under active development. Any feature requests are welcome!
 
 == Changelog ==
 
+= 1.4 =
+* Fix: Make sure there is no white space inside borders
+* Fix: Plugin action link
+* Fix: A few PHP notices
+
 = 1.3 =
 * Feature: Change grid width and ratio
 * Feature: Change grid alignment
@@ -73,6 +79,9 @@ This plugin is under active development. Any feature requests are welcome!
 * The very first version of the Easy Image Collage plugin
 
 == Upgrade notice ==
+
+= 1.4 =
+Upgrade to fix a few bugs
 
 = 1.3 =
 Major update, recommended for everyone!

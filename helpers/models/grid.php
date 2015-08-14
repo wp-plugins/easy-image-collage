@@ -33,7 +33,8 @@ class EIC_Grid {
 
 	public function draw()
 	{
-		$layout = EasyImageCollage::get()->helper( 'layouts' )->get( $this->layout_name() );
+        $layout = $this->layout() ? $this->layout() : EasyImageCollage::get()->helper( 'layouts' )->get( $this->layout_name() );
+        $layout['name'] = $this->layout_name();
 		return EasyImageCollage::get()->helper( 'layouts' )->draw_layout( $layout, $this );
 	}
 
@@ -79,13 +80,18 @@ class EIC_Grid {
 
 	public function images()
 	{
-		$images = is_array( $this->data['images'] ) ? $this->data['images'] : array();
+		$images = isset( $this->data['images'] ) && is_array( $this->data['images'] ) ? $this->data['images'] : array();
 		return $images;
 	}
 
+    public function layout()
+    {
+        return is_array( $this->data['layout'] ) ? $this->data['layout'] : false;
+    }
+
 	public function layout_name()
 	{
-		return $this->data['layout'];
+		return is_array( $this->data['layout'] ) ? 'custom-' . $this->ID() : $this->data['layout'];
 	}
 
 	public function ratio()

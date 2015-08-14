@@ -22,7 +22,7 @@ class EIC_Shortcode {
 
             // Styling
             $output .= '<style>';
-            $output .= '.eic-frame-' . $grid->ID() . ' { width: ' . $grid->width() . 'px; height:' . $grid->height() . 'px; border: ' . $grid->border_width() . 'px solid ' . $grid->border_color() . '; }';
+            $output .= '.eic-frame-' . $grid->ID() . ' { width: ' . $grid->width() . 'px; height:' . $grid->height() . 'px; background-color: ' . $grid->border_color() . '; border: ' . $grid->border_width() . 'px solid ' . $grid->border_color() . '; }';
             $output .= '.eic-frame-' . $grid->ID() . ' .eic-image { border: ' . $grid->border_width() . 'px solid ' . $grid->border_color() . '; }';
 
             foreach( $grid->images() as $id => $image ) {

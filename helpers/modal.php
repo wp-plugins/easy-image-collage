@@ -2,8 +2,40 @@
     <div class="eic-layouts">
         <span class="eic-modal-title"><i class="fa fa-angle-double-down"></i> <?php _e( 'Choose layout', 'easy-image-collage' ); ?></span>
         <div class="eic-container">
+            <div class="eic-frame eic-frame-0 eic-frame-custom" data-layout-name="custom">
+                <div class="eic-image eic-image-0">
+                    <div class="eic-text">
+                        <span><?php _e( 'Create Your Own Layout', 'easy-image-collage' ); ?></span>
+                        <span><?php _e( 'Premium Only', 'easy-image-collage' ); ?></span>
+                    </div>
+                </div>
+            </div>
             <?php echo EasyImageCollage::get()->helper( 'layouts' )->draw_layouts( true ); ?>
+            <div class="eic-custom-layouts">
+                <?php
+                foreach( $grid_custom_layouts as $layout_name => $grid_custom_layout ) {
+                    $grid_custom_layout['name'] = $layout_name;
+                    echo EasyImageCollage::get()->helper( 'layouts' )->draw_layout( $grid_custom_layout, false, true );
+                }
+                ?>
+            </div>
         </div>
+    </div>
+
+    <div class="eic-creating">
+        <?php
+        if( EasyImageCollage::is_addon_active( 'custom-layout' ) ) {
+            require( EasyImageCollage::addon( 'custom-layout' )->addonDir . '/modal.php' );
+        } else {
+            ?>
+            <a href="#" class="eic-modal-title" onclick="EasyImageCollage.btnChooseLayout()"><i class="fa fa-angle-double-left"></i> <?php _e( 'Back', 'easy-image-collage' ); ?></a>
+            <div class="eic-premium-only"><?php _e( 'This feature is only available in', 'easy-image-collage' ); ?> <a href="http://bootstrapped.ventures/easy-image-collage/" target="_blank">Easy Image Collage Premium</a></div>
+            <div class="creating-image-preview">
+                <a href="http://bootstrapped.ventures/easy-image-collage/" target="_blank">
+                    <img src="<?php echo EasyImageCollage::get()->coreUrl; ?>/img/custom_layout_preview.png" />
+                </a>
+            </div>
+        <?php } ?>
     </div>
 
     <div class="eic-editing">

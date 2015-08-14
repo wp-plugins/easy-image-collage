@@ -4,7 +4,7 @@ class EIC_Plugin_Action_Link {
 
     public function __construct()
     {
-        add_filter( 'plugin_action_links_easy-image-collage/easy-image-collage.php', array( $this, 'action_links' ) );
+        add_filter( 'plugin_action_links_' . EasyImageCollage::get()->corePath . '/easy-image-collage.php', array( $this, 'action_links' ) );
     }
 
     public function action_links( $links )

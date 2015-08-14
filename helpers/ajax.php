@@ -38,7 +38,7 @@ class EIC_Ajax {
                 wp_update_post( $post );
             }
 
-	        $grid = new EIC_Grid( $grid_id);
+	        $grid = new EIC_Grid( $grid_id );
             $grid->update_data( $grid_data );
 
             echo json_encode($grid_id);

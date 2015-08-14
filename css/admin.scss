@@ -47,10 +47,32 @@
       display: none;
     }
 
+    &.eic-frame-custom {
+      span {
+        position: absolute;
+        text-align: center;
+        left: 0;
+        right: 0;
+
+        &:nth-child(1) {
+          top: 10px;
+          font-weight: bold;
+        }
+        &:nth-child(2) {
+          bottom: 0;
+          font-size: 12px;
+        }
+      }
+    }
+
     &:hover {
       outline: #3498db solid 2px;
       cursor: pointer;
     }
+  }
+
+  .eic-custom-layouts {
+    display: none;
   }
 }
 
@@ -157,6 +179,11 @@
           cursor: pointer;
         }
       }
+
+      .eic-image-control-split-rows,
+      .eic-image-control-split-cols {
+        display: none;
+      }
     }
   }
 
@@ -169,6 +196,65 @@
   display: block;
   font-weight: bold;
   font-size: 14px;
+}
+
+.eic-creating {
+  .creating-image-preview {
+    text-align: center;
+  }
+
+  .eic-placeholder {
+    display: none;
+  }
+
+  .eic-frame {
+    width: 500px;
+    height: 500px;
+
+    border: 3px solid #444;
+
+    .eic-image {
+      border: 3px solid #444;
+      background: url(../img/no-image.png) repeat !important;
+    }
+
+    .eic-image-controls {
+      display: none;
+
+      .eic-image-control {
+        display: inline-block;
+
+        height: 30px;
+        width: 30px;
+        margin: 5px;
+
+        background-color: #3498db;
+        color: white;
+
+        text-align: center;
+        line-height: 30px;
+        font-size: 16px;
+
+        &:hover {
+          background-color: #2980b9;
+          cursor: pointer;
+        }
+      }
+
+      .eic-image-control-image,
+      .eic-image-control-manipulate {
+        display: none;
+      }
+    }
+
+    .eic-divider {
+      position: absolute;
+      z-index: 10;
+
+      background-color: #333;
+      border: 1px solid white;
+    }
+  }
 }
 
 .eic-manipulating {

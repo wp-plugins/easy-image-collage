@@ -133,11 +133,19 @@ jQuery(document).ready(function($) {
 
         // Choose layout
         $('.eic-layouts .eic-frame').click(function() {
-            EasyImageCollage.btnPickLayout($(this).clone());
+            var layout = $(this);
+            if(layout.hasClass('eic-frame-custom')) {
+                EasyImageCollage.setActivePage('creating');
+                if (typeof EasyImageCollage.customLayout == 'function') {
+                    EasyImageCollage.customLayout();
+                }
+            } else {
+                EasyImageCollage.btnPickLayout(layout.clone(), false);
+            }
         });
 
         // Edit image controls
-        $('.eic-editing').on('hover', '.eic-image', function(event) {
+        $('.eic-editing, .eic-creating').on('hover', '.eic-image', function(event) {
             if(event.type == 'mouseenter') {
                 $(this).find('.eic-image-controls').show();
             } else {
@@ -159,14 +167,17 @@ EasyImageCollage.btnEditGrid = function(id) {
     jQuery.featherlight(jQuery('.eic-modal'), EasyImageCollage.lightbox_settings);
 
     // Load grid layout
-    var layout = jQuery('.eic-lightbox .eic-layouts .eic-frame-' + grid.layout).clone();
+    var layout_name = (typeof grid.layout === 'string' || grid.layout instanceof String) ? grid.layout : 'custom-' + id,
+        layout = jQuery('.eic-lightbox .eic-layouts .eic-frame-' + layout_name).clone();
     jQuery('.eic-editing .eic-container').html(layout);
 
     // Load images in grid
-    for(var i = 0; i < grid['images'].length; i++) {
-        var image = grid['images'][i];
+    if(grid['images'] !== undefined) {
+        for(var i = 0; i < grid['images'].length; i++) {
+            var image = grid['images'][i];
 
-        if(image) EasyImageCollage.setImageFrontend(image);
+            if(image) EasyImageCollage.setImageFrontend(image);
+        }
     }
 
     // Go to edit grid page
@@ -177,12 +188,12 @@ EasyImageCollage.btnChooseLayout = function() {
     EasyImageCollage.setActivePage('layouts');
 };
 
-EasyImageCollage.btnPickLayout = function(layout_element) {
+EasyImageCollage.btnPickLayout = function(layout_element, layout) {
     jQuery('.eic-editing .eic-container').html(layout_element);
 
     var grid = EasyImageCollage.editing_grid;
 
-    grid['layout'] = layout_element.data('layout-name');
+    grid['layout'] = layout ? layout : layout_element.data('layout-name');
     grid['dividers'] = [];
 
     EasyImageCollage.setActivePage('editing');
@@ -450,35 +461,37 @@ EasyImageCollage.redrawGrid = function() {
 EasyImageCollage.redrawImages = function() {
     var grid = EasyImageCollage.editing_grid;
 
-    for(var i = 0; i < grid['images'].length; i++) {
-        var image = grid['images'][i];
+    if(grid['images'] !== undefined) {
+        for(var i = 0; i < grid['images'].length; i++) {
+            var image = grid['images'][i];
 
-        if(image) {
-            var attachment = {
-                id: image.attachment_id,
-                url: image.attachment_url,
-                width: image.attachment_width,
-                height: image.attachment_height
-            };
-            var newImage = EasyImageCollage.getImageProperties(i, attachment);
+            if(image) {
+                var attachment = {
+                    id: image.attachment_id,
+                    url: image.attachment_url,
+                    width: image.attachment_width,
+                    height: image.attachment_height
+                };
+                var newImage = EasyImageCollage.getImageProperties(i, attachment);
 
-            if(newImage !== undefined) {
-                var change_x = newImage.size_x / image.size_x,
-                    change_y = newImage.size_y / image.size_y;
+                if(newImage !== undefined) {
+                    var change_x = newImage.size_x / image.size_x,
+                        change_y = newImage.size_y / image.size_y;
 
-                image.size_x = Math.ceil(image.size_x * change_x);
-                image.size_y = Math.ceil(image.size_y * change_y);
-                image.pos_x = Math.ceil(image.pos_x * change_x);
-                image.pos_y = Math.ceil(image.pos_y * change_y);
+                    image.size_x = Math.ceil(image.size_x * change_x);
+                    image.size_y = Math.ceil(image.size_y * change_y);
+                    image.pos_x = Math.ceil(image.pos_x * change_x);
+                    image.pos_y = Math.ceil(image.pos_y * change_y);
+                }
+                grid['images'][i] = image;
+                EasyImageCollage.setImageFrontend(image);
             }
-            grid['images'][i] = image;
-            EasyImageCollage.setImageFrontend(image);
         }
     }
 };
 
 EasyImageCollage.setActivePage = function(name) {
-    var pages = ['layouts', 'editing', 'manipulating'];
+    var pages = ['layouts', 'creating', 'editing', 'manipulating'];
 
     pages.forEach(function(page) {
         if(page == name) {

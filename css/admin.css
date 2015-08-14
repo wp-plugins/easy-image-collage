@@ -53,9 +53,22 @@
     border: 1px solid #444; }
   .eic-layouts .eic-frame .eic-image-controls {
     display: none; }
+  .eic-layouts .eic-frame.eic-frame-custom span {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0; }
+    .eic-layouts .eic-frame.eic-frame-custom span:nth-child(1) {
+      top: 10px;
+      font-weight: bold; }
+    .eic-layouts .eic-frame.eic-frame-custom span:nth-child(2) {
+      bottom: 0;
+      font-size: 12px; }
   .eic-layouts .eic-frame:hover {
     outline: #3498db solid 2px;
     cursor: pointer; }
+.eic-layouts .eic-custom-layouts {
+  display: none; }
 
 .eic-editing .eic-properties {
   margin: 10px auto;
@@ -120,6 +133,9 @@
       .eic-editing .eic-frame .eic-image-controls .eic-image-control:hover {
         background-color: #2980b9;
         cursor: pointer; }
+    .eic-editing .eic-frame .eic-image-controls .eic-image-control-split-rows,
+    .eic-editing .eic-frame .eic-image-controls .eic-image-control-split-cols {
+      display: none; }
 .eic-editing .eic-premium-only {
   display: none; }
 
@@ -127,6 +143,41 @@
   display: block;
   font-weight: bold;
   font-size: 14px; }
+
+.eic-creating .creating-image-preview {
+  text-align: center; }
+.eic-creating .eic-placeholder {
+  display: none; }
+.eic-creating .eic-frame {
+  width: 500px;
+  height: 500px;
+  border: 3px solid #444; }
+  .eic-creating .eic-frame .eic-image {
+    border: 3px solid #444;
+    background: url(../img/no-image.png) repeat !important; }
+  .eic-creating .eic-frame .eic-image-controls {
+    display: none; }
+    .eic-creating .eic-frame .eic-image-controls .eic-image-control {
+      display: inline-block;
+      height: 30px;
+      width: 30px;
+      margin: 5px;
+      background-color: #3498db;
+      color: white;
+      text-align: center;
+      line-height: 30px;
+      font-size: 16px; }
+      .eic-creating .eic-frame .eic-image-controls .eic-image-control:hover {
+        background-color: #2980b9;
+        cursor: pointer; }
+    .eic-creating .eic-frame .eic-image-controls .eic-image-control-image,
+    .eic-creating .eic-frame .eic-image-controls .eic-image-control-manipulate {
+      display: none; }
+  .eic-creating .eic-frame .eic-divider {
+    position: absolute;
+    z-index: 10;
+    background-color: #333;
+    border: 1px solid white; }
 
 .eic-manipulating .manipulating-image-preview {
   text-align: center; }

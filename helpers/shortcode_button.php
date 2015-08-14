@@ -26,17 +26,22 @@ class EIC_Shortcode_Button {
         $screen = get_current_screen();
 
         if( $screen->base == 'post' ) {
-            include( EasyImageCollage::get()->coreDir . '/helpers/modal.php' );
-
             $post = get_post();
             $grid_ids = $this->get_grids_in_content( $post->post_content );
 
             $grids = array();
+            $grid_custom_layouts = array();
 
             foreach( $grid_ids as $grid_id ) {
                 $grid = new EIC_Grid( $grid_id );
                 $grids[$grid_id] = $grid->get_data();
+
+                if( $grid->layout() ) {
+                    $grid_custom_layouts[ $grid->layout_name() ] = $grid->layout();
+                }
             }
+
+            include( EasyImageCollage::get()->coreDir . '/helpers/modal.php' );
 
             wp_localize_script( 'eic_admin', 'eic_admin_grids', $grids );
             wp_localize_script( 'eic_admin', 'eic_default_grid', array(
